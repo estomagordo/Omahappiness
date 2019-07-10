@@ -416,5 +416,30 @@ namespace Poker.Test
 
             Assert.AreEqual(1, royalComparison);
         }
+
+        [TestMethod]
+        public void OmahaKingHighFlush()
+        {
+            var board = new List<Card>()
+            {
+                new Card(2),
+                new Card(3),
+                new Card(4),
+                new Card(9),
+                new Card(25)
+            };
+
+            var holeCards = new List<Card>()
+            {
+                new Card(7),
+                new Card(12),
+                new Card(21),
+                new Card(44)
+            };
+
+            var kingHighFlushComparison = _kingHighFlush.CompareTo((new Omaha()).GetBestHand(holeCards, board));
+
+            Assert.AreEqual(0, kingHighFlushComparison);
+        }
     }
 }

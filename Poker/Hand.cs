@@ -170,6 +170,16 @@ namespace Poker
             return _cardsSortedByRank[0].Rank.Value.CompareTo(other._cardsSortedByRank[0].Rank.Value);
         }
 
+        public static bool operator < (Hand first, Hand second)
+        {
+            return first.CompareTo(second) == -1;
+        }
+
+        public static bool operator > (Hand first, Hand second)
+        {
+            return first.CompareTo(second) == 1;
+        }
+
         public int CompareTo(Hand other)
         {
             if (HandType() != other.HandType())

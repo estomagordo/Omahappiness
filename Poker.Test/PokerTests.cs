@@ -290,8 +290,15 @@ namespace Poker.Test
         }
 
         [TestMethod]
-        public void TestMethod1()
+        public void HandsOrderedCorrectly()
         {
+            for (var i = 0; i < _allHands.Count - 1; i++)
+            {
+                for (var j = i + 1; j < _allHands.Count; j++)
+                {
+                    Assert.IsTrue(_allHands[i] > _allHands[j]);
+                }
+            }
         }
     }
 }

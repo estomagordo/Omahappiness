@@ -15,12 +15,14 @@ namespace Poker
                 throw new ArgumentException("Legal values are between 0 and 12 (inclusive).");
             }
 
-            Value = rawValue;
+            Value = rawValue > 0
+                ? rawValue
+                : 13;
         }
 
         public override string ToString()
         {
-            if (Value > 0 && Value < 9)
+            if (Value < 9)
             {
                 return (Value + 1).ToString();
             }

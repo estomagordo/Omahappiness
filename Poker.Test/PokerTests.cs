@@ -341,5 +341,80 @@ namespace Poker.Test
             Assert.AreEqual(0, aceKingBoatComparison);
             Assert.AreEqual(0, royalSamplerComparison);
         }
+
+        [TestMethod]
+        public void OmahaRoyal()
+        {
+            var board = new List<Card>()
+            {
+                new Card(14),
+                new Card(22),
+                new Card(39),
+                new Card(49),
+                new Card(50)
+            };
+
+            var holeCards = new List<Card>()
+            {
+                new Card(4),
+                new Card(21),
+                new Card(48),
+                new Card(51)
+            };
+
+            var royalComparison = _royalFlush.CompareTo((new Omaha()).GetBestHand(holeCards, board));
+
+            Assert.AreEqual(0, royalComparison);
+        }
+
+        [TestMethod]
+        public void NotOmahaOneCardRoyal()
+        {
+            var board = new List<Card>()
+            {
+                new Card(48),
+                new Card(22),
+                new Card(39),
+                new Card(49),
+                new Card(50)
+            };
+
+            var holeCards = new List<Card>()
+            {
+                new Card(4),
+                new Card(14),
+                new Card(21),
+                new Card(51)
+            };
+
+            var royalComparison = _royalFlush.CompareTo((new Omaha()).GetBestHand(holeCards, board));
+
+            Assert.AreEqual(1, royalComparison);
+        }
+
+        [TestMethod]
+        public void NotOmahaRoyalBoard()
+        {
+            var board = new List<Card>()
+            {
+                new Card(39),
+                new Card(48),
+                new Card(49),
+                new Card(50),
+                new Card(51)
+            };
+
+            var holeCards = new List<Card>()
+            {
+                new Card(4),
+                new Card(14),
+                new Card(21),
+                new Card(22)                
+            };
+
+            var royalComparison = _royalFlush.CompareTo((new Omaha()).GetBestHand(holeCards, board));
+
+            Assert.AreEqual(1, royalComparison);
+        }
     }
 }

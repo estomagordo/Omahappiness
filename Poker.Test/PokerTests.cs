@@ -14,8 +14,8 @@ namespace Poker.Test
         private Hand _aceQuadsJ;
         private Hand _middlingQuads;
         private Hand _aceKingBoat;
-        private Hand _kingAceBoat;
         private Hand _aceDeuceBoat;
+        private Hand _kingAceBoat;        
         private Hand _nuttyFlush;
         private Hand _aceHighFlush;
         private Hand _kingHighFlush;
@@ -110,16 +110,6 @@ namespace Poker.Test
                 );
             _allHands.Add(_aceKingBoat);
 
-            _kingAceBoat = new Hand
-                (
-                    new Card(0),
-                    new Card(26),
-                    new Card(12),
-                    new Card(38),
-                    new Card(51)
-                );
-            _allHands.Add(_kingAceBoat);
-
             _aceDeuceBoat = new Hand
                 (
                     new Card(0),
@@ -129,6 +119,16 @@ namespace Poker.Test
                     new Card(40)
                 );
             _allHands.Add(_aceDeuceBoat);
+
+            _kingAceBoat = new Hand
+                (
+                    new Card(0),
+                    new Card(26),
+                    new Card(12),
+                    new Card(38),
+                    new Card(51)
+                );
+            _allHands.Add(_kingAceBoat);            
 
             _nuttyFlush = new Hand
                 (
@@ -286,7 +286,7 @@ namespace Poker.Test
                     new Card(2),
                     new Card(3),
                     new Card(4),
-                    new Card(18)
+                    new Card(19)
                 );
             _allHands.Add(_nutLow);
         }

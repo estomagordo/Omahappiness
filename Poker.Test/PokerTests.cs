@@ -38,6 +38,8 @@ namespace Poker.Test
         [TestInitialize]
         public void Setup()
         {
+            _allHands = new List<Hand>();
+
             _royalFlush = new Hand
                 (
                     new Card(0),

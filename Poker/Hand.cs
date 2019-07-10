@@ -16,7 +16,7 @@ namespace Poker
         {
             _cards = new List<Card>() { card0, card1, card2, card3, card4 };
             CountRanks();
-            _cardsSortedByRank = _cards.OrderBy(card => card.Rank).ToList();
+            _cardsSortedByRank = _cards.OrderBy(card => card.Rank.Value).ToList();
             _orderedKickers = _rankCounts.Where((k, v) => v == 1).Select(pair => pair.Key).OrderBy(k => k).ToList();
         }
 
@@ -194,10 +194,10 @@ namespace Poker
 
             if (IsQuads())
             {
-                var thisQuadRank = _rankCounts.Where((k, v) => v == 4).Select((k, v) => k).First().Key;
-                var thisKickerRank = _rankCounts.Where((k, v) => v == 1).Select((k, v) => k).First().Key;
-                var otherQuadRank = other._rankCounts.Where((k, v) => v == 4).Select((k, v) => k).First().Key;
-                var otherKickerRank = other._rankCounts.Where((k, v) => v == 1).Select((k, v) => k).First().Key;
+                var thisQuadRank = _rankCounts.Where(pair => pair.Value == 4).Select(pair => pair.Key).First();
+                var thisKickerRank = _rankCounts.Where(pair => pair.Value == 1).Select(pair => pair.Key).First();
+                var otherQuadRank = other._rankCounts.Where(pair => pair.Value == 4).Select(pair => pair.Key).First();
+                var otherKickerRank = other._rankCounts.Where(pair => pair.Value == 1).Select(pair => pair.Key).First();
 
                 if (thisQuadRank == otherQuadRank)
                 {
@@ -209,10 +209,10 @@ namespace Poker
 
             if (IsFullHouse())
             {
-                var thisTripRank = _rankCounts.Where((k, v) => v == 3).Select((k, v) => k).First().Key;
-                var thisPairRank = _rankCounts.Where((k, v) => v == 2).Select((k, v) => k).First().Key;
-                var otherTripRank = other._rankCounts.Where((k, v) => v == 3).Select((k, v) => k).First().Key;
-                var otherPairRank = other._rankCounts.Where((k, v) => v == 2).Select((k, v) => k).First().Key;
+                var thisTripRank = _rankCounts.Where(pair => pair.Value == 3).Select(pair => pair.Key).First();
+                var thisPairRank = _rankCounts.Where(pair => pair.Value == 2).Select(pair => pair.Key).First();
+                var otherTripRank = other._rankCounts.Where(pair => pair.Value == 3).Select(pair => pair.Key).First();
+                var otherPairRank = other._rankCounts.Where(pair => pair.Value == 2).Select(pair => pair.Key).First();
 
                 if (thisTripRank == otherTripRank)
                 {
@@ -242,8 +242,8 @@ namespace Poker
 
             if (IsTrips())
             {
-                var thisTripRank = _rankCounts.Where((k, v) => v == 3).Select((k, v) => k).First().Key;              
-                var otherTripRank = other._rankCounts.Where((k, v) => v == 3).Select((k, v) => k).First().Key;
+                var thisTripRank = _rankCounts.Where(pair => pair.Value == 3).Select(pair => pair.Key).First();
+                var otherTripRank = other._rankCounts.Where(pair => pair.Value == 3).Select(pair => pair.Key).First();
 
                 if (thisTripRank != otherTripRank)
                 {
@@ -278,8 +278,8 @@ namespace Poker
 
             if (IsOnePair())
             {
-                var thisPairRank = _rankCounts.Where((k, v) => v == 2).Select((k, v) => k).First().Key;
-                var otherPairRank = other._rankCounts.Where((k, v) => v == 2).Select((k, v) => k).First().Key;
+                var thisPairRank = _rankCounts.Where(pair => pair.Value == 2).Select(pair => pair.Key).First();
+                var otherPairRank = other._rankCounts.Where(pair => pair.Value == 2).Select(pair => pair.Key).First();
 
                 if (thisPairRank != otherPairRank)
                 {

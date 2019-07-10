@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Omahappiness.iOS", "Omahapp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Omahappiness", "Omahappiness\Omahappiness\Omahappiness.csproj", "{3CEA1482-1CD1-463C-B11F-5390DBE947C3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Poker", "Poker\Poker.csproj", "{7E115433-3EE0-4311-BAAF-4E919110454D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -73,6 +75,18 @@ Global
 		{3CEA1482-1CD1-463C-B11F-5390DBE947C3}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
 		{3CEA1482-1CD1-463C-B11F-5390DBE947C3}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 		{3CEA1482-1CD1-463C-B11F-5390DBE947C3}.Release|iPhoneSimulator.Deploy.0 = Release|Any CPU
+		{7E115433-3EE0-4311-BAAF-4E919110454D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7E115433-3EE0-4311-BAAF-4E919110454D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7E115433-3EE0-4311-BAAF-4E919110454D}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{7E115433-3EE0-4311-BAAF-4E919110454D}.Debug|iPhone.Build.0 = Debug|Any CPU
+		{7E115433-3EE0-4311-BAAF-4E919110454D}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{7E115433-3EE0-4311-BAAF-4E919110454D}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{7E115433-3EE0-4311-BAAF-4E919110454D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7E115433-3EE0-4311-BAAF-4E919110454D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7E115433-3EE0-4311-BAAF-4E919110454D}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{7E115433-3EE0-4311-BAAF-4E919110454D}.Release|iPhone.Build.0 = Release|Any CPU
+		{7E115433-3EE0-4311-BAAF-4E919110454D}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{7E115433-3EE0-4311-BAAF-4E919110454D}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

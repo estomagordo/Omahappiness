@@ -17,7 +17,7 @@ namespace Poker
             _cards = new List<Card>() { card0, card1, card2, card3, card4 };
             CountRanks();
             _cardsSortedByRank = _cards.OrderBy(card => card.Rank.Value).ToList();
-            _orderedKickers = _rankCounts.Where((k, v) => v == 1).Select(pair => pair.Key).OrderBy(k => k).ToList();
+            _orderedKickers = _rankCounts.Where(pair => pair.Value == 1).Select(pair => pair.Key).OrderBy(k => k).ToList();
         }
 
         private void CountRanks()
@@ -260,8 +260,8 @@ namespace Poker
 
             if (IsTwoPair())
             {
-                var thisPairs = _rankCounts.Where((k, v) => v == 2).Select(pair => pair.Key).OrderBy(k => k).ToList();
-                var otherPairs = other._rankCounts.Where((k, v) => v == 2).Select(pair => pair.Key).OrderBy(k => k).ToList();
+                var thisPairs = _rankCounts.Where(pair => pair.Value == 2).Select(pair => pair.Key).OrderBy(k => k).ToList();
+                var otherPairs = other._rankCounts.Where(pair => pair.Value == 2).Select(pair => pair.Key).OrderBy(k => k).ToList();
 
                 if (thisPairs[1] != otherPairs[1])
                 {

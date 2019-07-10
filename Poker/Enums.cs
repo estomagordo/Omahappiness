@@ -6,7 +6,7 @@ namespace Poker
 {
     public class Enums
     {
-        public enum Suits
+        public enum Suit
         {
             Clubs,
             Diamonds,

@@ -302,5 +302,44 @@ namespace Poker.Test
                 }
             }
         }
+
+        [TestMethod]
+        public void HandsOfEqualWorthTie()
+        {
+            var otherRoyalFlush = new Hand
+            (
+                new Card(26),
+                new Card(35),
+                new Card(36),
+                new Card(37),
+                new Card(38)
+            );
+
+            var otherAceKingBoat = new Hand
+            (
+                new Card(13),
+                new Card(26),
+                new Card(39),
+                new Card(38),
+                new Card(25)
+            );
+
+            var otherRoyalSampler = new Hand
+            (
+                new Card(26),
+                new Card(9),
+                new Card(12),
+                new Card(29),
+                new Card(14)
+            );
+
+            var royalStraightComparison = _royalFlush.CompareTo(otherRoyalFlush);
+            var aceKingBoatComparison = _aceKingBoat.CompareTo(otherAceKingBoat);
+            var royalSamplerComparison = _royalSampler.CompareTo(otherRoyalSampler);
+
+            Assert.AreEqual(0, royalStraightComparison);
+            Assert.AreEqual(0, aceKingBoatComparison);
+            Assert.AreEqual(0, royalSamplerComparison);
+        }
     }
 }

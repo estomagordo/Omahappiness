@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,10 +13,12 @@ namespace PokerPlayground
     {
         static void Main(string[] args)
         {
+            var sw = new Stopwatch();
+            sw.Start();
             Console.WriteLine("Welcome!");
             Random rnd = new Random();
 
-            for (var i = 0; i < 3; i++)
+            for (var i = 0; i < 1; i++)
             {
                 var deck = Enumerable.Range(0, 52).ToList();
                 rnd.Shuffle(deck);
@@ -27,10 +30,13 @@ namespace PokerPlayground
                 var opponentWins = 0;
 
                 for (var a = 8; a < 48; a++)
-                {
-                    Console.WriteLine(a);
+                {                    
                     for (var b = a + 1; b < 49; b++)
                     {
+                        Console.WriteLine("a");
+                        Console.WriteLine(a);
+                        Console.WriteLine("b");
+                        Console.WriteLine(b);
                         for (var c = b + 1; c < 50; c++)
                         {
                             for (var d = c + 1; d < 51; d++)
@@ -63,12 +69,12 @@ namespace PokerPlayground
                 }
 
                 Console.WriteLine("My hand: ");
-                myCards.ForEach(card => Console.WriteLine(card));
+                myCards.ForEach(card => Console.WriteLine(card.ToString()));
 
                 Console.WriteLine("");
 
                 Console.WriteLine("Opponent hand: ");
-                opponentCards.ForEach(card => Console.WriteLine(card));
+                opponentCards.ForEach(card => Console.WriteLine(card.ToString()));
 
                 Console.WriteLine("");
                 Console.WriteLine("Results: ");
@@ -76,7 +82,8 @@ namespace PokerPlayground
                 Console.WriteLine(((float)myWins * 100.0) / (float)(myWins + opponentWins));
             }
 
-            Console.ReadLine();
+            sw.Stop();
+            Console.WriteLine("Elapsed time: " + (double)sw.ElapsedMilliseconds/1000.0 + " seconds");
         }
     }
 }

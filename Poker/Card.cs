@@ -17,5 +17,18 @@ namespace Poker
             Rank = new Rank(rawValue % 13);
             Suit = (Suit)(rawValue / 13);
         }
+
+        public override string ToString()
+        {
+            var suitString = Suit == Suit.Clubs
+                ? "c"
+                : Suit == Suit.Diamonds
+                    ? "d"
+                    : Suit == Suit.Hearts
+                        ? "h"
+                        : "s";
+
+            return Rank.ToString() + suitString;
+        }
     }
 }

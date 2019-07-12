@@ -11,6 +11,34 @@ namespace Poker
         private List<Card> _cardsSortedByRank;
         private Dictionary<int, int> _rankCounts;
         private List<int> _orderedKickers;
+        private int _pairCount = -1;
+        private int _tripCount = -1;
+
+        private int PairCount
+        {
+            get
+            {
+                if (_pairCount == -1)
+                {
+                    _pairCount = _rankCounts.Values.Count(value => value == 2);
+                }
+
+                return _pairCount;
+            }
+        }
+
+        private int TripCount
+        {
+            get
+            {
+                if (_tripCount == -1)
+                {
+                    _tripCount = _rankCounts.Values.Count(value => value == 3);
+                }
+
+                return _tripCount;
+            }
+        }
 
         public Hand(Card card0, Card card1, Card card2, Card card3, Card card4)
         {
@@ -39,17 +67,17 @@ namespace Poker
 
         private bool IsOnePair()
         {
-            return _rankCounts.Values.Count(value => value == 2) == 1;
+            return PairCount == 1 && TripCount == 0;
         }
 
         private bool IsTwoPair()
         {
-            return _rankCounts.Values.Count(value => value == 2) == 2;
+            return PairCount == 2;
         }
 
         private bool IsTrips()
         {
-            return _rankCounts.Values.Count(value => value == 3) == 1;
+            return TripCount == 1 && PairCount == 0;
         }
 
         private bool IsStraight()
@@ -74,7 +102,7 @@ namespace Poker
 
         private bool IsFullHouse()
         {
-            return IsOnePair() & IsTrips();
+            return PairCount == 1 && TripCount == 1;
         }
 
         private bool IsQuads()
@@ -89,34 +117,9 @@ namespace Poker
 
         private int HandType()
         {
-            if (IsStraightFlush())
+            if (IsOnePair())
             {
-                return 8;
-            }
-
-            if (IsQuads())
-            {
-                return 7;
-            }
-
-            if (IsFullHouse())
-            {
-                return 6;
-            }
-
-            if (IsFlush())
-            {
-                return 5;
-            }
-
-            if (IsStraight())
-            {
-                return 4;
-            }
-
-            if (IsTrips())
-            {
-                return 3;
+                return 1;
             }
 
             if (IsTwoPair())
@@ -124,9 +127,34 @@ namespace Poker
                 return 2;
             }
 
-            if (IsOnePair())
+            if (IsTrips())
             {
-                return 1;
+                return 3;
+            }
+
+            if (IsStraight())
+            {
+                return 4;
+            }
+
+            if (IsFlush())
+            {
+                return 5;
+            }
+
+            if (IsFullHouse())
+            {
+                return 6;
+            }
+
+            if (IsQuads())
+            {
+                return 7;
+            }
+
+            if (IsStraightFlush())
+            {
+                return 8;
             }
 
             return 0;

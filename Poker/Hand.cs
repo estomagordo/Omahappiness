@@ -237,6 +237,25 @@ namespace Poker
             return first.CompareTo(second) == 1;
         }
 
+        public override bool Equals(object obj)
+        {
+            if (!(obj is Hand))
+            {
+                return false;
+            }
+
+            return CardsSortedByRank == (obj as Hand).CardsSortedByRank;
+        }
+
+        public override int GetHashCode()
+        {
+            return (CardsSortedByRank[0].Rank.Value + 1) * 53 * 53 * 53 * 53
+                + (CardsSortedByRank[1].Rank.Value + 1) * 53 * 53 * 53
+                + (CardsSortedByRank[2].Rank.Value + 1) * 53 * 53
+                + (CardsSortedByRank[3].Rank.Value + 1) * 53
+                + (CardsSortedByRank[4].Rank.Value + 1);
+        }
+
         public int CompareTo(Hand other)
         {
             if (HandType() != other.HandType())

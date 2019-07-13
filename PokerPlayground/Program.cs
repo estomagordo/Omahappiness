@@ -17,6 +17,8 @@ namespace PokerPlayground
             sw.Start();
             Console.WriteLine("Welcome!");
             Random rnd = new Random();
+            var handCount = 0;
+            var uniqueHands = new HashSet<Hand>();
 
             for (var i = 0; i < 1; i++)
             {
@@ -46,6 +48,9 @@ namespace PokerPlayground
                                     var board = new List<Card>() { new Card(deck[a]), new Card(deck[b]), new Card(deck[c]), new Card(deck[d]), new Card(deck[e]) };
                                     var myHand = new Omaha().GetBestHand(myCards, board);
                                     var opponentHand = new Omaha().GetBestHand(opponentCards, board);
+                                    handCount += 2;
+                                    uniqueHands.Add(myHand);
+                                    uniqueHands.Add(opponentHand);
 
                                     var result = myHand.CompareTo(opponentHand);
 
@@ -84,6 +89,7 @@ namespace PokerPlayground
 
             sw.Stop();
             Console.WriteLine("Elapsed time: " + (double)sw.ElapsedMilliseconds/1000.0 + " seconds");
+            Console.WriteLine("Number of total hands: " + handCount + ", number of unique hands: " + uniqueHands.Count);
         }
     }
 }

@@ -76,10 +76,22 @@ namespace Poker
             }
         }
 
+        public List<Card> CardsSortedByRank
+        {
+            get
+            {
+                if (_cardsSortedByRank == null)
+                {
+                    _cardsSortedByRank = _cards.OrderBy(card => card.Rank.Value).ToList();
+                }
+
+                return _cardsSortedByRank;
+            }
+        }
+
         public Hand(Card card0, Card card1, Card card2, Card card3, Card card4)
         {
-            _cards = new List<Card>() { card0, card1, card2, card3, card4 };
-            _cardsSortedByRank = _cards.OrderBy(card => card.Rank.Value).ToList();            
+            _cards = new List<Card>() { card0, card1, card2, card3, card4 };                       
         }
 
         private bool IsOnePair()
@@ -104,12 +116,12 @@ namespace Poker
                 return false;
             }
 
-            if (_cardsSortedByRank[4].Rank.Value - _cardsSortedByRank[0].Rank.Value == 4)
+            if (CardsSortedByRank[4].Rank.Value - CardsSortedByRank[0].Rank.Value == 4)
             {
                 return true;
             }
 
-            return _cardsSortedByRank[4].Rank.Value == 13 && _cardsSortedByRank[3].Rank.Value == 4;
+            return CardsSortedByRank[4].Rank.Value == 13 && CardsSortedByRank[3].Rank.Value == 4;
         }
 
         private bool IsFlush()
@@ -179,13 +191,13 @@ namespace Poker
 
         private int CompareStraights(Hand other)
         {
-            if (_cardsSortedByRank[4].Rank.Value == 13)
+            if (CardsSortedByRank[4].Rank.Value == 13)
             {
-                if (other._cardsSortedByRank[4].Rank.Value == 13)
+                if (other.CardsSortedByRank[4].Rank.Value == 13)
                 {
-                    if (_cardsSortedByRank[3].Rank.Value == 12)
+                    if (CardsSortedByRank[3].Rank.Value == 12)
                     {
-                        if (other._cardsSortedByRank[3].Rank.Value == 12)
+                        if (other.CardsSortedByRank[3].Rank.Value == 12)
                         {
                             return 0;
                         }
@@ -194,7 +206,7 @@ namespace Poker
                     }
                 }
 
-                if (_cardsSortedByRank[0].Rank.Value == 1)
+                if (CardsSortedByRank[0].Rank.Value == 1)
                 {
                     return -1;
                 }
@@ -202,9 +214,9 @@ namespace Poker
                 return 1;
             }
 
-            if (other._cardsSortedByRank[4].Rank.Value == 13)
+            if (other.CardsSortedByRank[4].Rank.Value == 13)
             {
-                if (other._cardsSortedByRank[0].Rank.Value == 1)
+                if (other.CardsSortedByRank[0].Rank.Value == 1)
                 {
                     return 1;
                 }
@@ -212,7 +224,7 @@ namespace Poker
                 return -1;
             }
 
-            return _cardsSortedByRank[0].Rank.Value.CompareTo(other._cardsSortedByRank[0].Rank.Value);
+            return CardsSortedByRank[0].Rank.Value.CompareTo(other.CardsSortedByRank[0].Rank.Value);
         }
 
         public static bool operator < (Hand first, Hand second)
@@ -269,11 +281,11 @@ namespace Poker
 
             if (IsFlush())
             {
-                for (var i = _cardsSortedByRank.Count - 1; i >= 0; i--)
+                for (var i = CardsSortedByRank.Count - 1; i >= 0; i--)
                 {
-                    if (_cardsSortedByRank[i].Rank.Value != other._cardsSortedByRank[i].Rank.Value)
+                    if (CardsSortedByRank[i].Rank.Value != other.CardsSortedByRank[i].Rank.Value)
                     {
-                        return _cardsSortedByRank[i].Rank.Value.CompareTo(other._cardsSortedByRank[i].Rank.Value);
+                        return CardsSortedByRank[i].Rank.Value.CompareTo(other.CardsSortedByRank[i].Rank.Value);
                     }
                 }
 
